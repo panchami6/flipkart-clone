@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import axios from "axios";
 import "./products.css";
 import { useProducts } from './products-context';
@@ -13,7 +13,7 @@ export const Products = () => {
             dispatch({type: "GET_DATA", payload:response.data}
             )
         })()
-    }, [])
+    }, [dispatch])
 
     const getSortedData = (data, sortBy ) => {
         if ( sortBy === "PRICE_LOW_TO_HIGH") {
@@ -26,7 +26,7 @@ export const Products = () => {
         return data;
     }
 
-    const sortedData = getSortedData(data, sortBy);
+    getSortedData(data, sortBy);
 
     return (
         <div className = "product-listing">
@@ -34,7 +34,7 @@ export const Products = () => {
                 data && data.map(product => {
                     return(
                         <div className = "product-card">
-                            <img src={product.image} />
+                            <img src={product.image} alt = "product" />
                             <div className = "product-details">
                                 <div className = "product-brand">{product.brand}</div>
                                 <div>{product.name}</div>

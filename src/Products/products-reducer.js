@@ -1,5 +1,3 @@
-import { act } from "react-dom/cjs/react-dom-test-utils.production.min"
-
 export const ProductsReducer = (state, action) => {
     switch (action.type){
         case "GET_DATA": 
@@ -36,5 +34,7 @@ export const ProductsReducer = (state, action) => {
                 gender:null,
                 brand:null
             }
+        default:
+            return state;
     }
 }
